@@ -1,0 +1,26 @@
+[general]
+accounts = Test
+ui = ttyui
+
+
+[Account Test]
+localrepository = Local
+remoterepository = Remote
+autorefresh = 5
+
+[Repository Local]
+type = IMAP
+remotehost = localhost
+cert_fingerprint = 
+remoteuser = local-user
+remotepass = 123abc
+maxconnections = 2
+
+
+[Repository Remote]
+type = IMAP
+remotehost = remote-fqdn
+cert_fingerprint = 
+remoteuser = remote-user
+remotepass = 123abc
+maxconnections = 2
