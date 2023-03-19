@@ -1,7 +1,8 @@
 # 2023-03-19 moved to github
 # was implemented as /etc/postfix/client_checks
 # now migrated to blackhole routes so spammer has to deal with timeouts
-# maybe move to teergrubing in the future
+# maybe move to teergrubing in the future http://altlasten.lutz.donnerhacke.de/mitarb/lutz/usenet/antispam.html
+
 ip route add blackhole 135.125.171.0/2
 ip route add blackhole 135.125.175.0/24
 ip route add blackhole 141.95.112.0/24
@@ -19,4 +20,5 @@ ip route add blackhole 51.38.103.0/24
 ip route add blackhole 54.37.199.0/24
 ip route add blackhole 67.227.87.0/24
 ip route add blackhole 89.144.0.0/18
+
 # .eof
