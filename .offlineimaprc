@@ -1,5 +1,5 @@
 [general]
-accounts = Test
+accounts = Migration
 ui = ttyui
 
 
