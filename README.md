@@ -1,3 +1,1 @@
-# mailserver-stuff
-
-Notes and config snipits that I need for my mailserver
+Notes and config snippets that I need for my mailserver
