@@ -3,7 +3,7 @@ accounts = Test
 ui = ttyui
 
 
-[Account Test]
+[Account Migration]
 localrepository = Local
 remoterepository = Remote
 autorefresh = 5
