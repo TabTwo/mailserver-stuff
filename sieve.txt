@@ -1,0 +1,98 @@
+# from https://dovecot.org/list/dovecot/2014-September/097846.html
+# move mails from mailinglists in folders
+
+require [ "regex", "variables", "fileinto", "envelope", "mailbox", "imap4flags" ];
+
+# Mailinglist Killfile
+if anyof (header :contains "from" "unwanted at example.com",
+          header :contains "from" "spammer at example.net",
+          header :contains "from" "troll at example.org"){
+	discard;
+	stop;
+}
+
+if anyof (header :contains "x-spam-flag" "yes",
+          allof (header :regex "X-DSPAM-Result" "^(Spam|Virus|Bl[ao]cklisted)$",
+                 not header :contains "X-DSPAM-Reclassified" "Innocent")){
+	# Spam goes into the spam folder
+	setflag "\\Seen";
+	fileinto :create "spam";
+	stop;
+}
+
+# split out the various list forms
+# Mailman & other lists using list-id
+if exists "list-id" {
+    if header :regex "list-id" "<([a-z_0-9-]+)[.@]" {
+        set :lower "listname" "${1}";
+        fileinto :create "${listname}";
+    } else {
+        if header :regex "list-id" "^\\s*<?([a-z_0-9-]+)[.@]" {
+            set :lower "listname" "${1}";
+            fileinto :create "${listname}";
+        } else {
+            keep;
+        }
+    }
+    stop;}
+# Listar and mailman like
+elsif exists "x-list-id" {
+    if header :regex "x-list-id" "<([a-z_0-9-]+)\\\\." {
+        set :lower "listname" "${1}";
+        fileinto :create "${listname}";
+    } else {
+        keep;
+    }
+    stop;}
+# Ezmlm
+elsif exists "mailing-list" {
+    if header :regex "mailing-list" "([a-z_0-9-]+)@" {
+        set :lower "listname" "${1}";
+        fileinto :create "${listname}";
+    } else {
+        keep;
+    }
+    stop;}
+# York lists service
+elsif exists "x-mailing-list" {
+    if header :regex "x-mailing-list" "^\\s*([a-z_0-9-]+)@?" {
+        set :lower "listname" "${1}";
+        fileinto :create "${listname}";
+    } else {
+        keep;
+    }
+    stop;}
+# Smartlist
+elsif exists "x-loop" {
+	if header :regex "x-loop" "^\\s*(a-z_0-9-]+)@?" {
+		set :lower "listname" "${1}";
+		fileinto :create "${listname}";
+	} else {
+	    keep;
+	}
+    stop;}
+# poorly identified
+elsif envelope :contains "from" "owner-" {
+    if envelope :regex "from" "owner-([a-z_0-9-]+)-outgoing@" {
+        set :lower "listname" "${1}";
+        fileinto :create "${listname}";
+    } elsif envelope :regex "from" "owner-([a-z_0-9-]+)@" {
+        set :lower "listname" "${1}";
+        fileinto :create "${listname}";
+    } elsif header :regex "Sender" "owner-([a-z_0-9-]+)@" {
+        set :lower "listname" "${1}";
+        fileinto :create "${listname}";
+    } else {
+        keep;
+    }
+    stop;}
+# other poorly identified
+elsif  envelope :contains "from" "-request" {
+    if envelope :regex "from" "([a-z_0-9-]+)-request@" {
+        set :lower "listname" "${1}";
+        fileinto :create "${listname}";
+    } else {
+        keep;
+    }
+    stop;
+}
