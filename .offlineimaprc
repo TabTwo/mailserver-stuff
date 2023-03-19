@@ -24,3 +24,4 @@ cert_fingerprint =
 remoteuser = remote-user
 remotepass = 123abc
 maxconnections = 2
+folderfilter = lambda foldername: foldername not in ['Trash', 'Spam', 'Deleted Items']
