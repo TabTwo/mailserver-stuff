@@ -3,7 +3,7 @@
 # now migrated to blackhole routes so spammer has to deal with timeouts
 # maybe move to teergrubing in the future http://altlasten.lutz.donnerhacke.de/mitarb/lutz/usenet/antispam.html
 
-ip route add blackhole 135.125.171.0/2
+ip route add blackhole 135.125.171.0/24
 ip route add blackhole 135.125.175.0/24
 ip route add blackhole 141.95.112.0/24
 ip route add blackhole 144.76.161.0/24
