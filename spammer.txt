@@ -1,16 +1,22 @@
-45.135.96.0/22		REJECT Your IP range is spam
-135.125.175.0/24	REJECT Your IP range is spam
-194.85.248.0/22		REJECT Your IP range is spam
-45.141.16.0/22		REJECT Your IP range is spam
-46.161.220.0/22		REJECT Your IP range is spam
-185.222.32.0/22		REJECT Your IP range is spam
-51.38.103.0/24		REJECT Your IP range is spam
-67.227.87.0/24		REJECT Your IP range is spam
-89.144.0.0/18		REJECT Your IP range is spam
-195.133.39.0/24		REJECT Your IP range is spam
-54.37.199.0/24		REJECT Your IP range is spam
-144.76.161.0/24		REJECT Your IP range is spam
-162.19.11.0/24		REJECT Your IP range is spam
-149.72.120.80/32	REJECT Your IP is spam
-135.125.171.0/24	REJECT Your IP range is spam
-141.95.112.0/24		REJECT Your IP range is spam
+# 2023-03-19 moved to github
+# was implemented as /etc/postfix/client_checks
+# now migrated to blackhole routes so spammer has to deal with timeouts
+# maybe move to teergrubing in the future
+ip route add blackhole 135.125.171.0/2
+ip route add blackhole 135.125.175.0/24
+ip route add blackhole 141.95.112.0/24
+ip route add blackhole 144.76.161.0/24
+ip route add blackhole 149.72.120.80/32
+ip route add blackhole 162.19.11.0/24
+ip route add blackhole 185.222.32.0/22
+ip route add blackhole 194.85.248.0/22
+ip route add blackhole 195.133.39.0/24
+ip route add blackhole 45.135.96.0/22
+ip route add blackhole 45.141.16.0/22
+ip route add blackhole 46.148.40.0/24
+ip route add blackhole 46.161.220.0/22
+ip route add blackhole 51.38.103.0/24
+ip route add blackhole 54.37.199.0/24
+ip route add blackhole 67.227.87.0/24
+ip route add blackhole 89.144.0.0/18
+# .eof
