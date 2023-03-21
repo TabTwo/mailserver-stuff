@@ -20,6 +20,7 @@ ip route add blackhole 51.38.103.0/24
 ip route add blackhole 54.37.199.0/24
 ip route add blackhole 67.227.87.0/24
 ip route add blackhole 89.144.0.0/18
-ip route add blackhole 5.9.13.126/32 #Hetzner
+ip route add blackhole 5.9.13.126/24 #Hetzner
+ip route add blackhole 88.99.6.69/24 #Hetzner
 
 # .eof
