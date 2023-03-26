@@ -14,7 +14,7 @@ ip route add blackhole 194.85.248.0/22
 ip route add blackhole 195.133.39.0/24
 ip route add blackhole 45.135.96.0/22
 ip route add blackhole 45.141.16.0/22
-ip route add blackhole 46.148.40.0/24
+ip route add blackhole 46.148.40.0/24 #IMAP logins
 ip route add blackhole 46.161.220.0/22
 ip route add blackhole 51.38.103.0/24
 ip route add blackhole 54.37.199.0/24
