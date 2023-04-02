@@ -6,6 +6,7 @@
 ip route add blackhole 135.125.171.0/24
 ip route add blackhole 135.125.175.0/24
 ip route add blackhole 141.95.112.0/24
+ip route add blackhole 141.98.11.0/24
 ip route add blackhole 144.76.161.0/24
 ip route add blackhole 149.72.120.80/32
 ip route add blackhole 162.19.11.0/24
